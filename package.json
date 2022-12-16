@@ -1,14 +1,16 @@
 {
   "type": "module",
-  "scripts":{
-    "start":"node apiExpressSever.js",
+  "scripts": {
+    "start": "node apiExpressSever.js",
     "dev": "npx nodemon apiExpressServer.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "postgres": "^3.3.2"
+    "morgan": "^1.10.0",
+    "postgres": "^3.3.2",
+    "postgresql": "^0.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
