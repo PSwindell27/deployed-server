@@ -4,22 +4,24 @@ import dotenv from "dotenv"
 
 dotenv.config();
 
+const sql = postgres({database: "bestMovies"});
+
 const app = express();
 app.use(express.json());
 app.use(express.static("./client"));
 
 
-const sql = postgres({database: "bestMovies"});
+
 
 const port = 3000;
 
-app.get("/movie", (req, res, next) => {
+app.get("/api/movie", (req, res, next) => {
     sql`SELECT * FROM movie`.then((result) =>{
         res.json(result);
     }).catch(next);
 })
 
-app.get("/movie/:id", (req, res, next) =>{
+app.get("/api/movie/:id", (req, res, next) =>{
     const id = req.params.id;
     sql`SELECT * FROM movie WHERE id = ${id}`.then((result) =>{
         if(result.length === 0){
@@ -33,7 +35,7 @@ app.get("/movie/:id", (req, res, next) =>{
     }).catch(next);
 })
 
-app.post("/movie", (req, res, next) =>{
+app.post("/api/movie", (req, res, next) =>{
     const entry = req.body;
     const requiredFields = ["title", "year", "genre", "star"];
     const errors = [];
@@ -58,7 +60,7 @@ app.post("/movie", (req, res, next) =>{
     }
 });
 
-app.patch("/movie/:id", (req, res, next) => {
+app.patch("/api/movie/:id", (req, res, next) => {
     const  id  = req.params.id;
     const { title, year, genre, star } = req.body;
     sql`
@@ -71,7 +73,7 @@ app.patch("/movie/:id", (req, res, next) => {
     }).catch(next);
 })
 
-app.delete("/movie/:id", (req, res, next) => {
+app.delete("/api/movie/:id", (req, res, next) => {
     const id = req.params.id;
     sql`DELETE FROM movie WHERE id = ${id}`.then(result => {
         res.send(`DELETED id: ${id}`);
