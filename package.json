@@ -1,8 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node apiExpressSever.js",
-    "dev": "npx nodemon apiExpressServer.js"
+    "start": "node apiExpressSever.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
