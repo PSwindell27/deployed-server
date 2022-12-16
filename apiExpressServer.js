@@ -3,8 +3,9 @@ import postgres from "postgres";
 import dotenv from "dotenv"
 
 dotenv.config();
-
-const sql = postgres({database: "bestMovies"});
+console.log(process.env.DATABASE_URL);
+//const sql = postgres("postgres://bestmovies_user:b3x03poYNeLgFS7DjIx3mmBojsrG9kUr@dpg-cedp2f1gp3jvikb6pmt0-a.oregon-postgres.render.com/bestmovies?ssl=true");
+const sql = postgres(process.env.DATABASE_URL);
 
 const app = express();
 app.use(express.json());
