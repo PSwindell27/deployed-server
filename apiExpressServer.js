@@ -11,9 +11,6 @@ const app = express();
 app.use(express.json());
 app.use(express.static("./client"));
 
-
-
-
 const port = 3000;
 
 app.get("/api/movie", (req, res, next) => {
